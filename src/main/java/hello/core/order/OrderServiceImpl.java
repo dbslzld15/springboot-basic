@@ -5,10 +5,11 @@ import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor // final 이 붙은 arguments 들로 생성자를 자동 생성
+//@RequiredArgsConstructor // final 이 붙은 arguments 들로 생성자를 자동 생성
 public class OrderServiceImpl implements OrderService{
 
     /**
@@ -21,11 +22,20 @@ public class OrderServiceImpl implements OrderService{
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-/*    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    /*
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository,
+                            @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) { //Qualifier이 붙은 빈 사용
         this.memberRepository = memberRepository; // @RequiredArgsConstructor가 생성자를 대신함
         this.discountPolicy = discountPolicy;
-    }*/
+    }
+    */
+
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
