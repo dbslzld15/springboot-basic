@@ -19,11 +19,12 @@ public class AutoAppConfig {
      *
      * **/
 
-//    수동 빈 등록 vs 자동 빈 등록
-//    이 경우 수동 빈 등록이 우선권을 가진다.
-//    (수동 빈이 자동 빈을 오버라이딩 해버린다.)
-//    @Bean(name = "memoryMemberRepository")
-//    public MemberRepository memberRepository() {
-//        return new MemoryMemberRepository();
-//    }
+/*    수동 빈 등록 vs 자동 빈 등록
+    이 경우 수동 빈 등록이 우선권을 가진다.
+    (수동 빈이 자동 빈을 오버라이딩 해버린다.)
+    @Bean(name = "memoryMemberRepository")
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
+*/
 }
