@@ -17,7 +17,7 @@ public class BeanLifeCycleTest {
         NetworkClient client = ac.getBean(NetworkClient.class);
         //객체를 생성하는 단계에는 url이 없고, 객체를 생성한 다음에 외부에서 수정자
         //주입을 통해서 setUrl() 이 호출되어야 url이 존재하게 된다.
-        
+
         ac.close(); //스프링 컨테이너를 종료, ConfigurableApplicationContext 필요
     }
 
