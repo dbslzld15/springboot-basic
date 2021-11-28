@@ -19,13 +19,14 @@ public class LogDemoController {
      * 그런데 myLogger가 request 스코프 이기 때문에 request 스코프에 빈이 없으면 새로 생성하고, 이미 있으면 있는 빈을 반환
      * */
     private final LogDemoService logDemoService;
-    private final ObjectProvider<MyLogger> myLoggerProvider;
+    private final MyLogger myLogger;
+    //    private final ObjectProvider<MyLogger> myLoggerProvider;
 
     @RequestMapping("log-demo")
     @ResponseBody
     public String logDemo(HttpServletRequest request) {
         String requestURL = request.getRequestURL().toString();
-        MyLogger myLogger = myLoggerProvider.getObject();
+//        MyLogger myLogger = myLoggerProvider.getObject();
         //ObjectProvider 덕분에 ObjectProvider.getObject() 를 호출하는 시점까지 request scope 빈의 생성을 지연할 수 있다.
         myLogger.setRequestURL(requestURL);
         myLogger.log("controller test");
